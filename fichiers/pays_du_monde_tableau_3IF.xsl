@@ -14,11 +14,45 @@
 
                 <body style="background-color:white;">
                     <h1>Les pays du monde</h1>
-                    Mise en forme par le binôme (B3251), Aymeric Cousaert et Mathis Guilhin
+                    Mise en forme par le binôme B3251, Aymeric Cousaert et Mathis Guilhin
+                    
                     <xsl:apply-templates select="//metadonnees"/>
-                    <table border="3" width="600" align="center">
-                    <xsl:apply-templates select="//country"/>
-                    </table>
+                    
+                    <hr/>
+                    <hr/>
+                    
+                    Pays avec 6 voisins :
+                    <xsl:for-each select = "//country/borders[count(neighbour)=6]/../name/common">
+                        <xsl:value-of select = "."/>
+                        <xsl:if test="not(position() = last())">, </xsl:if>
+                    </xsl:for-each>
+                    <p/>
+                    Pays ayant le plus court nom :
+                    <xsl:for-each select = "//country/name/common">
+                        <xsl:sort select = "string-length(.)" data-type="number"/>
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="."/>
+                        </xsl:if>
+                    </xsl:for-each>
+                        
+                    <hr/>
+                    
+                    <xsl:for-each select = "//country/infosContinent/continent[not(preceding::* = .)]">
+                        <h3>
+                            Pays du continent :
+                            <xsl:value-of select = "."/>
+                            par sous-régions :
+                        </h3>
+                        <xsl:for-each select = "//country/infosContinent/subregion[not(preceding::* = .)][../continent[text() = current()]]">
+                            <h4>
+                                <xsl:value-of select = "."/> (<xsl:value-of select = "count(//country[infosContinent[subregion=current()]])"/> pays)
+                            </h4>
+                            <table border="3" width="100%" align="center">
+                                <xsl:apply-templates select="//country[infosContinent/subregion[text() = current()]]"/>
+                            </table>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    
                 </body>
             </html>
             
@@ -27,18 +61,17 @@
                 <p style="text-align:center; color:blue;">
                 Objectif : <xsl:value-of select="objectif"/>
                 </p>
-                <hr/>
             </xsl:template>
 
             <xsl:template match="country">
             <xsl:for-each select=".">
             <tr>
                 <td>
-                    <xsl:value-of select="count(preceding-sibling::*)" />
+                    <xsl:value-of select="count(preceding::infosContinent/subregion[text() = current()/infosContinent/subregion/text()]) + 1" />
                 </td>
                 <td>
                     <p style="text-align:left; color:green;">
-                        <xsl:value-of select="name/common"/> (<xsl:value-of select="official"/>)
+                        <xsl:value-of select="name/common"/> (<xsl:value-of select="name/official"/>)
                     </p>
                     <p style="text-align:left; color:brown;">
                         <xsl:value-of select="name/native_name[@lang='fra']/official"/>
@@ -49,15 +82,15 @@
                     <xsl:value-of select="capital"/>
                 </td>
                 <td>
-                    <xsl:if test="count(borders) = 0"> Île </xsl:if>
+                    <xsl:if test="count(borders) = 0 and landlocked = 'false'"> Île </xsl:if>
                     <xsl:for-each select="borders/neighbour/text()">
              		<xsl:value-of select="//country[codes/cca3=current()]/name/common"/>
-             		<xsl:if test="not(position() = last())">,</xsl:if>
+             		<xsl:if test="not(position() = last())">, </xsl:if>
                     </xsl:for-each>
                 </td>
                 <td>
                     Latitude : <xsl:value-of select="coordinates/@lat"/> <p/>
-                    Longitude :<xsl:value-of select="coordinates/@long"/>
+                    Longitude : <xsl:value-of select="coordinates/@long"/>
                 </td>
                 <td>
                     <xsl:variable name="code" select="codes/cca2"/>

@@ -7,6 +7,35 @@ function recupererPremierEnfantDeTypeNode(n) {
     }
     return x;
 }
+
+function button1() {
+    document.body.style.background = 'blue';
+    document.getElementById("myButton1").style.color = "white";
+}
+
+function button2() {
+    document.body.style.background = 'white';
+}
+
+function button3(xmlDocumentUrl, xslDocumentUrl) {
+    var nomPays = document.getElementById('myTextInput1').value;
+    var xsltProcessor = new XSLTProcessor();
+    var xslDocument = chargerHttpXML(xslDocumentUrl);
+    var xmlDocument = chargerHttpXML(xmlDocumentUrl);
+    xsltProcessor.setParameter(null, "nomPays", nomPays);
+    xsltProcessor.importStylesheet(xslDocument);
+    var newXmlDocument = xsltProcessor.transformToDocument(xmlDocument);
+    
+    // Recherche du parent (dont l'id est "here") de l'élément à remplacer dans le document HTML courant
+    var elementHtmlParent = window.document.getElementById("id_element_a_remplacer");
+    // Premier élément fils du parent
+    var elementHtmlARemplacer = recupererPremierEnfantDeTypeNode(elementHtmlParent);
+    // Premier élément "elementName" du nouveau document (par exemple, "ul", "table"...)
+    var elementAInserer = newXmlDocument.getElementsByTagName("h3")[0];
+    
+    // Remplacement de l'élément
+    elementHtmlParent.replaceChild(elementAInserer, elementHtmlARemplacer);
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //change le contenu de l'élement avec l'id "nom" avec la chaine de caractéres en paramètre	  
 function setNom(nom) {
