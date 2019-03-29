@@ -124,11 +124,15 @@ function bouton8_mouse(){
 }
 
 function bouton9(){
+    var xsltProcessor = new XSLTProcessor();
+    var xslDocument = chargerHttpXML('autoCompletion.xsl');
     var xmlDocument = chargerHttpXML('countriesTP.xml');
-    var pays = xmlDocument.getElementsByTagName("common");
-    for(var i = 0 ; i<pays.length ; i++){
-      var node = document.createElement("option",{ value : pays[i].nodeValue });
-      window.document.getElementById("pays").appendChild(node);
+    xsltProcessor.importStylesheet(xslDocument);
+    var newXmlDocument = xsltProcessor.transformToDocument(xmlDocument);
+    var elementHtmlParent = window.document.getElementById("pays");
+    var elementAInserer = newXmlDocument.getElementsByTagName("datalist")[0].childNodes;
+    for (var i = 0; i < elementAInserer.length; i++){
+    elementHtmlParent.appendChild(elementAInserer[i]);
     }
 }
 

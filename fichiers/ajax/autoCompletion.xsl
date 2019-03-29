@@ -5,17 +5,27 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:output method="html"/>
-	<xsl:template match="/">
+	<xsl:template match="/countries">
 	<html>
 		<body>
-            <xsl:apply-templates select="//country"/>
+            <datalist id="pays">
+            <xsl:for-each select="country">
+            <option>
+                <xsl:attribute name="value">
+                    <xsl:value-of select="name/common/text()"/>
+                </xsl:attribute>
+            </option>
+            </xsl:for-each>
+            </datalist>
 		</body>
 	</html>
 	</xsl:template>
     
     <xsl:template match="country">
         <xsl:for-each select=".">
-           <xsl:value-of select="/name/common"/>
+                <xsl:attribute name="value">
+                    <xsl:value-of select="name/common/text()"/>
+                </xsl:attribute>
         </xsl:for-each>
     </xsl:template>
 
