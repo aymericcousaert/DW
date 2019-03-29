@@ -2,17 +2,14 @@
     
 
     <head>
-        
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>TP 3IF Ajax</title>
         <meta name="author" content="Elöd EGYED-ZSIGMOND">
-            
             <script type="text/javascript" src="partieJavascript.js"></script>
-            
     </head>
     
     <body>
-        <p>Fichier à modifier/compélter</p>
+        <p>Binome B3251, Aymeric Cousaert et Mathis Guilhin</p>
         <p>
             <input name="button" type="button" id="myButton1" onClick="button1();" value="Bouton 1" />
             <br />
@@ -20,56 +17,52 @@
             <br />
             <input name="button" type="button" id="myButton3" onClick="button3('countriesTP.xml', 'cherchePays.xsl');" value="Bouton 3" />
             <input name="button" type="text" id="myTextInput1" value="" list="pays"/>
-            
             <datalist id="pays">
             </datalist>
             <br />
 		    <input name="button" type="button" id="myButton4" onClick="bouton4_displaySvg();" value="Bouton 4" />
             <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton5_clickable();" value="Bouton 5" />
+            <input name="button" type="button" id="myButton5" onClick="bouton5_clickable();" value="Bouton 5" />
             <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton6_displayWorldSvg();" value="Bouton 6" />
+            <input name="button" type="button" id="myButton6" onClick="bouton6_displayWorldSvg();" value="Bouton 6" />
             <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton7_clickable();" value="Bouton 7" />
+            <input name="button" type="button" id="myButton7" onClick="bouton7_clickable();" value="Bouton 7" />
             <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton8_mouse();" value="Bouton 8" />
+            <input name="button" type="button" id="myButton8" onClick="bouton8_mouse();" value="Bouton 8" />
             <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton9();" value="Bouton 9" />
-            <br />
-            <input name="button" type="button" id="myButton4" onClick="bouton4_displaySvg();" value="Bouton 10" />
-            <br />
-            
-            
-            <input name="button2" type="button" id="myButton2" onClick="Bouton2_ajaxBibliographie('ajax.bib.xml','ajax.bib.xsl','ul');" value="2. AJAX avec ajax.bib.xml/ajax.bib.xsl" />
-            <br />
-            <input name="button2" type="button" id="myButton3" onClick="Bouton3_ajaxEmployees('Employees.xml');" value="3. AJAX avec Employees.xml" />
+            <input name="button" type="button" id="myButton9" onClick="bouton9();" value="Bouton 9" />
             <br />
         </p>
+        <div id="informations">
+        </div>
         <div id="placeTableauAAfficher" >
-            <p>Les noms sont : <br/>
-            <!--<span id="id_nom_a_remplacer" style="color: red; font-weight: bold;">
-                
-                <table id="tableau" border='3' width = '100%' align='center' style="display: none;">
-                    <tr>
-                        <td id="nomPays">
-                            
-                        </td>
-                        <td id="capitale">
-                            
-                        </td>
-                        <td id="drapeau">
-                            
-                        </td>
-                    </tr>
-                    
-                </table> -->
-            </p>
+            <table id="tableauVide" border='3' width = '100%' align='center'>
+                <tr>
+                    <td width="33%">
+                        Pays
+                    </td>
+                    <td width="33%">
+                        Capitale
+                    </td>
+                    <td width="33%">
+                        Drapeau
+                    </td>
+                </tr>
+                <tr>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                </tr>
+            </table>
         </div>
         <div id="id_element_a_remplacer">
-            <p style="color: red; font-weight: bold;">Cet &eacute;l&eacute;ment va &ecirc;tre remplac&eacute; par une bibliographie en XML mise en forme par une feuille de style XSLT...</p>
+            <p style="color: red; font-weight: bold;"></p>
         </div>
-        
-        
     </body>
-    
 </html>

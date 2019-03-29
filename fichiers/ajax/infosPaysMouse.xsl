@@ -9,35 +9,56 @@
 	<xsl:template match="/">
 	<html>
 		<body>
-            <!--
-             <div>
-                <xsl:value-of select="//country[name/common=$nomPays]/capital/text()"/>
-            </div>
-            <div>
-                <xsl:variable name="code" select="//country[name/common=$nomPays]/codes/cca2/text()"/>
-                <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
-                <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
-                <img src="{concat('http://www.geonames.org/flags/x/',translate($code, $uppercase, $lowercase),'.gif')}" alt="" height="40" width="60"/>
-                
-            </div>
-             -->
-            
             <table id="tableau" border='3' width = '100%' align='center'>
                 <tr>
-                    <td id="nomPays">
+                    <td width="33%" >
+                        Pays
+                    </td>
+                    <td width="33%" >
+                        Capitale
+                    </td>
+                    <td width="33%" >
+                        Drapeau
+                    </td>
+                </tr>
+                <tr>
+                    <td id="nomPays" width="33%" height="50">
                         <xsl:value-of select="//country/name[common=$nomPays]/common/text()"/>
                     </td>
-                    <td id="capitale">
+                    <td id="capitale" width="33%" height="50">
                         <xsl:value-of select="//country[name/common=$nomPays]/capital/text()"/>
                     </td>
-                    <td id="drapeau">
+                    <td id="drapeau" width="33%" height="50">
                         <xsl:variable name="code" select="//country[name/common=$nomPays]/codes/cca2/text()"/>
                         <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
                         <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
                         <img src="{concat('http://www.geonames.org/flags/x/',translate($code, $uppercase, $lowercase),'.gif')}" alt="" height="40" width="60"/>
                     </td>
                 </tr>
-                
+            </table>
+            <table id="tableauVide" border='3' width = '100%' align='center'>
+                <tr>
+                    <td width="33%" >
+                        Pays
+                    </td>
+                    <td width="33%" >
+                        Capitale
+                    </td>
+                    <td width="33%" >
+                        Drapeau
+                    </td>
+                </tr>
+                <tr>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                    <td width="33%" height="50">
+                        -
+                    </td>
+                </tr>
             </table>
 		</body>
 	</html>
