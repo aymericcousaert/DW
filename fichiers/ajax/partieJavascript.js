@@ -36,6 +36,19 @@ function button3(xmlDocumentUrl, xslDocumentUrl) {
     // Remplacement de l'élément
     elementHtmlParent.replaceChild(elementAInserer, elementHtmlARemplacer);
 }
+
+function bouton4_displaySvg(){
+	// Recherche du parent (dont l'id est "here") de l'élément à remplacer dans le document HTML courant
+    var elementHtmlParent = window.document.getElementById("id_element_a_remplacer");
+    // Premier élément fils du parent
+    var elementHtmlARemplacer = recupererPremierEnfantDeTypeNode(elementHtmlParent);
+    // Premier élément "elementName" du nouveau document (par exemple, "ul", "table"...)
+    var elementAInserer = document.getElementById('svg-object');
+    
+    // Remplacement de l'élément
+    elementHtmlParent.replaceChild(elementAInserer, elementHtmlARemplacer);
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //change le contenu de l'élement avec l'id "nom" avec la chaine de caractéres en paramètre	  
 function setNom(nom) {
@@ -144,6 +157,7 @@ function Bouton3_ajaxEmployees(xmlDocumentUrl) {
 
 
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function Bouton4_ajaxEmployeesTableau(xmlDocumentUrl, xslDocumentUrl) {
