@@ -1,5 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function recupererPremierEnfantDeTypeNode(n) {
     var x = n.firstChild;
     while (x.nodeType != 1) { // Test if x is an element node (and not a text node or other)
@@ -7,12 +5,6 @@ function recupererPremierEnfantDeTypeNode(n) {
     }
     return x;
 }
-
-function setNom(nom) {
-    var elementHtmlARemplir = window.document.getElementById("informations");
-    elementHtmlARemplir.innerHTML = nom;
-}
-
 
 function chargerHttpXML(xmlDocumentUrl) {
     
@@ -31,7 +23,6 @@ function chargerHttpXML(xmlDocumentUrl) {
     
     return httpAjax.responseXML;
 }
-
 
 function chargerHttpJSON(jsonDocumentUrl) {
     
@@ -77,47 +68,35 @@ function button3(xmlDocumentUrl, xslDocumentUrl) {
     xsltProcessor.setParameter(null, "nomPays", nomPays);
     xsltProcessor.importStylesheet(xslDocument);
     var newXmlDocument = xsltProcessor.transformToDocument(xmlDocument);
-    
-    // Recherche du parent (dont l'id est "here") de l'?l?ment ? remplacer dans le document HTML courant
-    var elementHtmlParent = window.document.getElementById("id_element_a_remplacer");
-    // Premier ?l?ment fils du parent
-    var elementHtmlARemplacer = recupererPremierEnfantDeTypeNode(elementHtmlParent);
-    // Premier ?l?ment "elementName" du nouveau document (par exemple, "ul", "table"...)
-    var elementAInserer = newXmlDocument.getElementsByTagName("h3")[0];
-    
-    // Remplacement de l'?l?ment
-    elementHtmlParent.replaceChild(elementAInserer, elementHtmlARemplacer);
+    var elementHtmlParent = window.document.getElementById("informations3");
+    var elementAInserer = newXmlDocument.getElementById("infos");
+    if (elementHtmlParent.childNodes.length == 0) {
+    elementHtmlParent.appendChild(elementAInserer);
+    }
+    else {
+        elementHtmlParent.replaceChild(elementAInserer.firstChild, elementHtmlParent.firstChild);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function bouton4_displaySvg(){
-  
     var xsltProcessor = new XSLTProcessor();
     var xmlDocument = chargerHttpXML('exemple.svg');
-    
-	// Recherche du parent (dont l'id est "here") de l'?l?ment ? remplacer dans le document HTML courant
     var elementHtmlParent = window.document.getElementById("id_element_a_remplacer");
-    // Premier ?l?ment fils du parent
     var elementHtmlARemplacer = recupererPremierEnfantDeTypeNode(elementHtmlParent);
-    // Premier ?l?ment "elementName" du nouveau document (par exemple, "ul", "table"...)
-    
     var texteAInserer = new XMLSerializer().serializeToString(xmlDocument);
-    
-    // Remplacement de l'?l?ment
-    elementHtmlARemplacer.innerHTML=texteAInserer;
-
+    elementHtmlARemplacer.innerHTML = texteAInserer;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function bouton5_clickable(){
-
     var shapes = document.getElementsByTagName("g")[0].childNodes;
     for(var i = 0 ; i<shapes.length ; i++){
       if(shapes[i].nodeType == 1){
         shapes[i].addEventListener("click",function(){
-          setNom(this.getAttribute('title'));
+                                   window.document.getElementById("informations5").innerHTML = this.getAttribute('title');
         })
       }
     }
@@ -126,21 +105,12 @@ function bouton5_clickable(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function bouton6_displayWorldSvg(){
-  
     var xsltProcessor = new XSLTProcessor();
     var xmlDocument = chargerHttpXML('worldHigh.svg');
-    
-	// Recherche du parent (dont l'id est "here") de l'?l?ment ? remplacer dans le document HTML courant
     var elementHtmlParent = window.document.getElementById("id_element_a_remplacer");
-    // Premier ?l?ment fils du parent
     var elementHtmlARemplacer = recupererPremierEnfantDeTypeNode(elementHtmlParent);
-    // Premier ?l?ment "elementName" du nouveau document (par exemple, "ul", "table"...)
-    
     var texteAInserer = new XMLSerializer().serializeToString(xmlDocument);
-    
-    // Remplacement de l'?l?ment
     elementHtmlARemplacer.innerHTML=texteAInserer;
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +119,7 @@ function bouton7_clickable(){
   var countries = document.getElementsByTagName("g")[0].childNodes;
   for(var i = 0 ; i<countries.length ; i++){
         countries[i].addEventListener("click",function(){
-          setNom(this.getAttribute('countryname'));
+                                      window.document.getElementById("informations7").innerHTML = this.getAttribute('countryname');
         })
     }
 }

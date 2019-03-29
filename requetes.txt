@@ -106,28 +106,21 @@ tuk
 
 PARTIE 2 
 
-Elements modifiés : 
-Nb d'apparitions :
+Modification des noms des titres :
+<!ELEMENT country (name,tld*,codes,currency*,callingCode*,
+                   capital,altSpellings+, infosContinent,languages,
+                   coordinates?,demonym,landlocked,borders?,area?)>
+
+
+Modification du nombre d'apparitions (*,+,?) :
 
 <!ELEMENT country (name,tld*,codes,currency*,callingCode*,
                    capital,altSpellings+, infosRegion?,languages,
                    coordinates?,demonym,landlocked,borders?,area?)>
 
-<!ELEMENT infosContinent (continent,subregion?) >
+<!ELEMENT infosContinent (continent,subregion?)>
 
 <!ELEMENT borders (neighbour+)>
-
-Correction des titres :
-<!ELEMENT country (name,tld*,codes,currency*,callingCode*,
-                   capital,altSpellings+, infosContinent,languages,
-                   coordinates?,demonym,landlocked,borders?,area?)>
-
-/countries/country/borders[count(neighbour)=0]
-
-PARTIE 3
-
-
-
 
 
 

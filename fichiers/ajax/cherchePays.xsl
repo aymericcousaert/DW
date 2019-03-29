@@ -10,11 +10,9 @@
 	<xsl:template match="/">
 	<html>
 		<body>
-            <h3>
-                <xsl:value-of select="//name[common=$nomPays]/official"/>
-                <p/>
-                <xsl:value-of select="//country[name/common=$nomPays]/capital"/>
-            </h3>
+            <p id="infos">
+                <xsl:value-of select="//name[common=$nomPays]/official"/>, <xsl:value-of select="//country[name/common=$nomPays]/capital"/>
+            </p>
 		</body>
 	</html>
 	</xsl:template>

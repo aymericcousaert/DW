@@ -9,7 +9,7 @@
 	<xsl:template match="/">
 	<html>
 		<body>
-            <table id="tableau" border='3' width = '100%' align='center'>
+            <table id="tableau" border='3' width = '100%'>
                 <tr>
                     <td width="33%" >
                         Pays
@@ -36,7 +36,7 @@
                     </td>
                 </tr>
             </table>
-            <table id="tableauVide" border='3' width = '100%' align='center'>
+            <table id="tableauVide" border='3' width = '100%'>
                 <tr>
                     <td width="33%" >
                         Pays
