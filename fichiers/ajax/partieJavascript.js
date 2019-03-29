@@ -103,23 +103,26 @@ function bouton8_mouse(){
     var xmlDocument = chargerHttpXML('countriesTP.xml');
     xsltProcessor.importStylesheet(xslDocument);
 
-  var countries = document.getElementsByTagName("g")[0].childNodes;
-  var tableau = document.getElementById("tableau");
-  for(var i = 0 ; i<countries.length ; i++){
+    var countries = document.getElementsByTagName("g")[0].childNodes;
+    var tableau = document.getElementById("tableau");
+    for(var i = 0 ; i<countries.length ; i++){
         countries[i].addEventListener("mouseover",function(){
-          tableau.style.display = "";
-          xsltProcessor.setParameter(null, "nomPays", this.getAttribute('countryname'));
-          
-          var newXmlDocument = xsltProcessor.transformToDocument(xmlDocument);
-          setTableau(this.getAttribute('countryname'), newXmlDocument.getElementsByTagName("div")[0], newXmlDocument.getElementsByTagName("div")[1]);
-          this.setAttribute("style", "fill:red");
-          
-        });
+                                      
+                                      xsltProcessor.setParameter(null, "nomPays", this.getAttribute('countryname'));
+                                      
+                                      var newXmlDocument = xsltProcessor.transformToDocument(xmlDocument);
+                                      var elementHtmlParent = window.document.getElementById("placeTableauAAfficher");
+                                      var elementAInserer = newXmlDocument.getElementById("tableau");
+                                      elementHtmlParent.appendChild(elementAInserer);
+                                      this.setAttribute("style", "fill:red");
+
+                                      });
         countries[i].addEventListener("mouseleave",function(){
-          tableau.style.display = "none";
-          setTableau("","","");
-          this.setAttribute("style", "");
-        });
+                                      var elementHtmlParent = window.document.getElementById("placeTableauAAfficher");
+                                      var elementHtmlASupprimer = window.document.getElementById("tableau");
+                                      elementHtmlParent.removeChild(elementHtmlASupprimer);
+                                      this.setAttribute("style", "");
+                                      });
     }
 }
 

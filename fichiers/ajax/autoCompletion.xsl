@@ -5,11 +5,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:output method="html"/>
-	<xsl:template match="/countries">
+	<xsl:template match="/">
 	<html>
 		<body>
             <datalist id="pays">
-            <xsl:for-each select="country">
+            <xsl:for-each select="//country">
             <option>
                 <xsl:attribute name="value">
                     <xsl:value-of select="name/common/text()"/>
@@ -21,13 +21,7 @@
 	</html>
 	</xsl:template>
     
-    <xsl:template match="country">
-        <xsl:for-each select=".">
-                <xsl:attribute name="value">
-                    <xsl:value-of select="name/common/text()"/>
-                </xsl:attribute>
-        </xsl:for-each>
-    </xsl:template>
+    
 
 </xsl:stylesheet>
 
